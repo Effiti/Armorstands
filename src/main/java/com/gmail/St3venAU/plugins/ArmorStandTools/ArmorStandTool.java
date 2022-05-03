@@ -44,24 +44,23 @@ public enum ArmorStandTool {
     ROTAT   ("rotat",       Material.MAGMA_CREAM,            2,  false, "astools.use",     false),
     CLONE   ("gui_clone",   Material.GLOWSTONE_DUST,         44, true,  "astools.clone",   false),
     GEN_CMD ("gui_gen_cmd", Material.COMMAND_BLOCK,          53, true,  "astools.cmdblock",false),
-    INVIS   ("gui_invis",   Material.GOLD_NUGGET,            42, true,  "astools.use",     false),
-    SIZE    ("gui_size",    Material.EMERALD,                51, true,  "astools.use",     false),
-    BASE    ("gui_base",    Material.STONE_SLAB,             41, true,  "astools.use",     false),
+    INVIS   ("gui_invis",   Material.GOLD_NUGGET,            43, true,  "astools.use",     false),
+    SIZE    ("gui_size",    Material.EMERALD,                52, true,  "astools.use",     false),
+    BASE    ("gui_base",    Material.STONE_SLAB,             42, true,  "astools.use",     false),
     //GRAV    ("gui_grav",    Material.GHAST_TEAR,             49, true,  "astools.use",     false),
-    ARMS    ("gui_arms",    Material.ARROW,                  40, true,  "astools.use",     false),
+    ARMS    ("gui_arms",    Material.ARROW,                  51, true,  "astools.use",     false),
     NAME    ("gui_name",    Material.NAME_TAG,               39, true,  "astools.use",     false),
-    SLOTS   ("gui_slots",   Material.IRON_HOE,               43, true,  "astools.use",     false),
+    SLOTS   ("gui_slots",   Material.IRON_HOE,               44, true,  "astools.use",     false),
     PHEAD   ("gui_pHead",   Material.PLAYER_HEAD,            48, true,  "astools.head",    false),
-    INVUL   ("gui_invul",   Material.GLISTERING_MELON_SLICE, 50, true,  "astools.use",     false),
     MOVE    ("gui_move",    Material.FEATHER,                25, true,  "astools.use",     false),
-    GLOW    ("gui_glow",    Material.GLOWSTONE,              52, true,  "astools.glow",    false),
+    GLOW    ("gui_glow",    Material.GLOWSTONE,              53, true,  "astools.glow",    false),
     HEAD    ("gui_head",    Material.WITHER_SKELETON_SKULL,  7,  true,  "astools.use",     false),
     BODY    ("gui_body",    Material.NETHERITE_CHESTPLATE,   16, true,  "astools.use",     false),
     RARM    ("gui_rarm",    Material.REDSTONE_TORCH,         15, true,  "astools.use",     true),
     LARM    ("gui_larm",    Material.TORCH,                  17, true,  "astools.use",     true),
     RLEG    ("gui_rleg",    Material.BLAZE_ROD,              24, true,  "astools.use",     true),
-    LLEG    ("gui_lleg",    Material.BONE,                   26, true,  "astools.use",     true),
-    ITEM    ("gui_item",    Material.ARMOR_STAND,            34, true,  "astools.use",     false);
+    LLEG    ("gui_lleg",    Material.BONE,                   26, true,  "astools.use",     true);
+    //ITEM    ("gui_item",    Material.ARMOR_STAND,            34, true,  "astools.use",     false);
 
     private final ItemStack item;
     private final String config_id;
@@ -146,7 +145,7 @@ public enum ArmorStandTool {
         }
         if(this == MOVE) {
             as.teleport(Utils.getLocationFacing(p.getLocation()));
-            Utils.title(p, Config.carrying);
+            //p.sendMessage(ChatColor.GREEN + Config.carrying);
             return;
         }
         showTitle(p);
@@ -228,8 +227,6 @@ public enum ArmorStandTool {
                 return setLore(item, ChatColor.AQUA + Config.basePlate + ": " + (as.hasBasePlate() ? (ChatColor.GREEN + Config.isOn) : (ChatColor.RED + Config.isOff)));
             case ARMS:
                 return setLore(item, ChatColor.AQUA + Config.arms + ": " + (as.hasArms() ? (ChatColor.GREEN + Config.isOn) : (ChatColor.RED + Config.isOff)));
-            case INVUL:
-                return setLore(item, ChatColor.AQUA + Config.invul + ": " + (as.isInvulnerable() ? (ChatColor.GREEN + Config.isOn) : (ChatColor.RED + Config.isOff)));
             case SLOTS:
                 return setLore(item, ChatColor.AQUA + Config.equip + ": " + (Utils.hasDisabledSlots(as) ? (ChatColor.GREEN + Config.locked) : (ChatColor.RED + Config.unLocked)));
             case NAME:

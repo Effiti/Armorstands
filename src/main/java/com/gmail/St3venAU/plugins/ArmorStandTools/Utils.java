@@ -101,10 +101,6 @@ class Utils {
         return false;
     }
 
-    static void title(Player p, String msg) {
-        p.sendTitle(" ", msg, 0, 70, 0);
-    }
-
     static Location getLocationFacing(Location loc) {
         Location l = loc.clone();
         Vector v = l.getDirection();

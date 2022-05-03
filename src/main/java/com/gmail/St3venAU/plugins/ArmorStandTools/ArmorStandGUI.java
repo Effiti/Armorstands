@@ -195,13 +195,13 @@ class ArmorStandGUI implements Listener {
                 break;
             case INVIS:
                 as.setVisible(!as.isVisible());
-                Utils.title(p, Config.asVisible + ": " + (as.isVisible() ? Config.isTrue : Config.isFalse));
+                p.sendMessage(ChatColor.GREEN + Config.asVisible + ": " + (as.isVisible() ? Config.isTrue : Config.isFalse));
                 break;
             case CLONE:
                 p.closeInventory();
                 ArmorStand clone = Utils.cloneArmorStand(as);
                 AST.pickUpArmorStand(clone, p, true);
-                Utils.title(p, Config.carrying);
+                p.sendMessage(ChatColor.GREEN + Config.carrying);
                 break;
             case GEN_CMD:
                 String command = Utils.createSummonCommand(as);
@@ -211,7 +211,7 @@ class ArmorStandGUI implements Listener {
                         p.sendMessage(ChatColor.RED + Config.creativeRequired);
                     } else {
                         Utils.generateCmdBlock(p.getLocation(), command);
-                        Utils.title(p, Config.cbCreated);
+                        p.sendMessage(ChatColor.GREEN + Config.cbCreated);
                     }
                 }
                 if(Config.logGeneratedSummonCommands) {
@@ -220,15 +220,15 @@ class ArmorStandGUI implements Listener {
                 break;
             case SIZE:
                 as.setSmall(!as.isSmall());
-                Utils.title(p, Config.size + ": " + (as.isSmall() ? Config.small : Config.normal));
+                p.sendMessage(ChatColor.GREEN + Config.size + ": " + (as.isSmall() ? Config.small : Config.normal));
                 break;
             case BASE:
                 as.setBasePlate(!as.hasBasePlate());
-                Utils.title(p, Config.basePlate + ": " + (as.hasBasePlate() ? Config.isOn : Config.isOff));
+                p.sendMessage(ChatColor.GREEN + Config.basePlate + ": " + (as.hasBasePlate() ? Config.isOn : Config.isOff));
                 break;
             case ARMS:
                 as.setArms(!as.hasArms());
-                Utils.title(p, Config.arms + ": " + (as.hasArms() ? Config.isOn : Config.isOff));
+                p.sendMessage(ChatColor.GREEN + Config.arms + ": " + (as.hasArms() ? Config.isOn : Config.isOff));
                 break;
             case NAME:
                 p.closeInventory();
@@ -238,35 +238,20 @@ class ArmorStandGUI implements Listener {
                 p.closeInventory();
                 AST.setPlayerSkull(p, as);
                 break;
-            case INVUL:
-                boolean inv = !as.isInvulnerable();
-                as.setInvulnerable(inv);
-                Utils.title(p, Config.invul + ": " + (inv ? Config.isOn : Config.isOff));
-                break;
+
             case SLOTS:
-                Utils.title(p, Config.equip + ": " + (Utils.toggleSlotsDisabled(as) ? Config.locked : Config.unLocked));
+                p.sendMessage(ChatColor.GREEN + Config.equip + ": " + (Utils.toggleSlotsDisabled(as) ? Config.locked : Config.unLocked));
                 break;
             case MOVE:
                 p.closeInventory();
                 as.removeMetadata("clone", AST.plugin);
                 AST.pickUpArmorStand(as, p, false);
-                Utils.title(p, Config.carrying);
+                p.sendMessage(ChatColor.GREEN + Config.carrying);
                 break;
             case GLOW:
                 boolean glowing = !as.isGlowing();
                 as.setGlowing(glowing);
-                Utils.title(p, Config.glow + ": " + (glowing ? Config.isOn : Config.isOff));
-                break;
-            case ITEM:
-                World w = p.getWorld();
-                boolean commandFeedback = Boolean.TRUE.equals(w.getGameRuleValue(GameRule.SEND_COMMAND_FEEDBACK));
-                if(commandFeedback) w.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false);
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), Utils.createGiveCommand(as, p));
-                if(commandFeedback) w.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, true);
-                p.closeInventory();
-                if(p.getGameMode() != GameMode.CREATIVE) {
-                    as.remove();
-                }
+                p.sendMessage(ChatColor.GREEN + Config.glow + ": " + (glowing ? Config.isOn : Config.isOff));
                 break;
             default:
                 return;

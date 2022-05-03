@@ -142,16 +142,16 @@ enableTool:
   summon: false
   gui: true
   rotat: true
-  gui_clone: true
-  gui_gen_cmd: true
-  gui_invis: true
+  gui_clone: false
+  gui_gen_cmd: false
+  gui_invis: false
   gui_size: true
   gui_base: true
   gui_grav: true
   gui_arms: true
   gui_name: true
   gui_slots: true
-  gui_pHead: true
+  gui_pHead: false
   gui_invul: true
   gui_move: true
   gui_glow: true

@@ -384,7 +384,6 @@ public class AST extends JavaPlugin {
                 }
                 AST.waitingForName.remove(plrUuid);
                 AST.waitingForSkull.remove(plrUuid);
-                Utils.title(p, " ");
             }
         }.runTask(AST.plugin);
         return true;

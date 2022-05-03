@@ -54,7 +54,7 @@ public class MainListener implements Listener {
         if(!(event.getRightClicked() instanceof ArmorStand as)) return;
         Player p = event.getPlayer();
         if (ArmorStandGUI.isInUse(as)) {
-            Utils.title(p, Config.guiInUse);
+            p.sendMessage(ChatColor.RED + Config.guiInUse);
             event.setCancelled(true);
             return;
         }
@@ -177,7 +177,7 @@ public class MainListener implements Listener {
         if(carrying != null && !carrying.isDead()) {
             p.setMetadata("lastEvent", new FixedMetadataValue(AST.plugin, System.currentTimeMillis()));
             if (AST.playerHasPermission(p, carrying.getLocation().getBlock(), null)) {
-                Utils.title(p, Config.asDropped);
+                p.sendMessage(ChatColor.GREEN +  Config.asDropped);
                 carrying.removeMetadata("clone", AST.plugin);
             } else {
                 if(force) {
@@ -194,7 +194,6 @@ public class MainListener implements Listener {
         if(editing) {
             p.setMetadata("lastEvent", new FixedMetadataValue(AST.plugin, System.currentTimeMillis()));
             AST.activeTool.remove(uuid);
-            Utils.title(p, "");
         }
         return editing;
     }
@@ -283,7 +282,7 @@ public class MainListener implements Listener {
             }
             Location l = Utils.getLocationFacing(p.getLocation());
             AST.pickUpArmorStand(spawnArmorStand(l), p, true);
-            Utils.title(p, Config.carrying);
+            //p.sendMessage(ChatColor.GREEN + Config.carrying);
         }
         new BukkitRunnable() {
             @Override
